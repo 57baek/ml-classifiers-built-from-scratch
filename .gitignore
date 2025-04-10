@@ -1,5 +1,8 @@
-# Data files
-data/
+# Ignore everything in data/
+data/*
+
+# But keep this file
+!data/.gitkeep
 
 # MAC OS
 .DS_Store
