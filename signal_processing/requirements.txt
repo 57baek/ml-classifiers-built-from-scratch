@@ -1,9 +1,0 @@
-mne 
-autoreject 
-numpy 
-scikit-learn 
-imbalanced-learn 
-matplotlib
-ipykernel
-pandas
-scipy
