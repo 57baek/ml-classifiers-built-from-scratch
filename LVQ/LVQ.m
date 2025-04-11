@@ -13,7 +13,7 @@ y = grp2idx(labels)';  % numeric labels
 [n, p] = size(X);
 
 %%
-L_pro = [3, 6, 8]; % different number of prototypes per class
+L_pro = [3,6,8,35]; % different number of prototypes per class
 N = 100 * p; % number of training steps (iterations)
 alpha0 = 0.1; % initial learning rate
 alphas = linspace(alpha0, 0.01, N); % decreasing learning rate
@@ -28,7 +28,7 @@ for L = L_pro % loop over each L in the set
 
         Xj = X(:, y == j); % all samples in class j
 
-        rand_samples = randperm(size(Xj, 2), L); % choose L random sample index from class j
+        rand_samples = randperm(size(Xj, 2), L); % choose L unique random sample index from class j
         M(:, (j*L - L + 1) : j*L) = Xj(:, rand_samples); % insert the selected L samples into the correct block of the prototype matrix M
                                                          % since we are taking 4~6 index for class 2 if 1,1,1,2,2,2,3,...
         pro_labels((j*L - L + 1) : j*L) = j;             

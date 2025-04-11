@@ -76,10 +76,6 @@ title('3D LDA Projection of Training Data', FontSize=15);
 legend(classes, 'Location', 'best');
 grid on;
 
-
-
-
-
 %% 
 
 test_data = readtable("data/forest/testing.csv");

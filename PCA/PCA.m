@@ -24,6 +24,28 @@ y_idx = grp2idx(y)'; % convert each class into numeric index
 
 %%
 
+[U, ~, ~] = svd(X, 'econ');
+Z = U(:, 1:2)' * X;  % project original data to PCA subspace (Z is m by p)
+
+figure;
+gscatter(Z(1, :), Z(2, :), y, 'rgbm', 'o', 'filled');
+xlabel('PC 1'); ylabel('PC 2');
+title('2D PCA Projection of Training Data', 'FontSize', 15);
+grid on;
+
+%%
+
+[U, ~, ~] = svd(X, 'econ');
+Z = U(:, 1:3)' * X;
+
+figure;
+scatter3(Z(1, :), Z(2, :), Z(3, :), 50, y, 'filled');
+xlabel('PC 1'); ylabel('PC 2'); zlabel('PC 3');
+title('3D PCA Projection of Training Data', 'FontSize', 15);
+grid on;
+
+%%
+
 % range of principal components to test
 m_range = 1:n; % max = 27 since data = 198 by 27
 acc = zeros(size(m_range));
@@ -82,6 +104,7 @@ xlabel('Number of Principal Components (m)', FontSize=15);
 ylabel('Training Accuracy (%)', FontSize=15);
 title('PCA Classifier Accuracy vs. m for the Training Dataset', FontSize=15);
 grid on;
+
 
 %%
 
