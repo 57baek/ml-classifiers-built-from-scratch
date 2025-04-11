@@ -26,15 +26,16 @@ for k_idx = 1:length(k_range)
     k = k_range(k_idx);
 
     y_pred = zeros(1, p);
+
     for i = 1:p
-        xi = X(:, i);
-        % Compute distances to all other training samples
-        dists = vecnorm(X - xi, 2, 1);
-        dists(i) = inf; % exclude self in k-NN
+        xi = X(:, i); % extract the feature vector of the sample i (27 by 1)
+        dists = vecnorm(X - xi, 2, 1); % euclidean distance (p = 2) from xi to every other training sample or column in X (dim = 1)
+        dists(i) = inf; % set the distance to itself (which is 0) to inf to exclude it
         [~, sorted_idx] = sort(dists);
-        k_neighbors = y(sorted_idx(1:k));
-        y_pred(i) = mode(k_neighbors);
+        k_neighbors = y(sorted_idx(1:k)); % take the closest k samples
+        y_pred(i) = mode(k_neighbors); % mode finds the most frequent class label among neighbors
     end
+    
     acc(k_idx) = mean(y_pred == y);
 
     if acc(k_idx) > best_acc
