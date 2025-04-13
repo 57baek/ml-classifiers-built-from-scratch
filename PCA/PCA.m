@@ -103,6 +103,7 @@ plot(m_range, acc * 100, '-ob', 'LineWidth', 2);
 xlabel('Number of Principal Components (m)', FontSize=15);
 ylabel('Training Accuracy (%)', FontSize=15);
 title('PCA Classifier Accuracy vs. m for the Training Dataset', FontSize=15);
+%title('PCA Classifier Accuracy vs. m for the Testing Dataset', FontSize=15);
 grid on;
 
 

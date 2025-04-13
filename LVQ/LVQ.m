@@ -3,6 +3,8 @@
 clc; clear; close all;
 
 data = readtable("data/forest/training.csv");
+%data = readtable("data/forest/testing.csv");
+
 labels = categorical(data.class);
 classes = categories(labels);
 K = numel(classes);
@@ -13,7 +15,7 @@ y = grp2idx(labels)';  % numeric labels
 [n, p] = size(X);
 
 %%
-L_pro = [3,6,8,35]; % different number of prototypes per class
+L_pro = [3,6,8]; % different number of prototypes per class
 N = 100 * p; % number of training steps (iterations)
 alpha0 = 0.1; % initial learning rate
 alphas = linspace(alpha0, 0.01, N); % decreasing learning rate
@@ -67,7 +69,7 @@ for L = L_pro % loop over each L in the set
     end
 
     acc = mean(y_eval == y);
-    fprintf('Training Accuracy: %.2f%%\n', acc * 100);
+    fprintf('Training Accuracy (L = %d): %.2f%%\n', L, acc * 100);
 
     % confusion matrix
     figure;
@@ -101,4 +103,4 @@ fprintf('Testing Accuracy (L = %d): %.2f%%\n', L, test_acc * 100);
 figure;
 cm = confusionmat(y_test, y_test_eval);
 confusionchart(cm, classes);
-title(sprintf('LVQ Confusion Matrix (Test Set, L = %d)', L));
+title(sprintf('LVQ Confusion Matrix (L = %d)', L));

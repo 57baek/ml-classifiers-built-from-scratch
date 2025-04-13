@@ -51,6 +51,7 @@ plot(k_range, acc * 100, '-ob');
 xlabel('k (number of neighbors)', FontSize=15);
 ylabel('Accuracy (%)', FontSize=15);
 title('k-NN Classifier Accuracy vs. k for the Training Dataset', FontSize=15);
+%title('k-NN Classifier Accuracy vs. k for the Testing Dataset', FontSize=15);
 legend('Location', 'best');
 grid on;
 

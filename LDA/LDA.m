@@ -10,6 +10,7 @@ classes = categories(labels);
 K = numel(classes);
 
 data.class = [];
+
 X = table2array(data)'; 
 y = grp2idx(labels)';   
 
