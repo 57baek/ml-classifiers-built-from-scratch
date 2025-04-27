@@ -1,4 +1,3 @@
-
 %% Load Data
 
 clc; clear; close all;
